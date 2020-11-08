@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Power of 2</title>
+    <script>
+        /*
+         * Defining Table
+         * Input(s): Set the base to 2 and the exponents to 0 to 31.
+         * Processing: Perform all powers of 2 from 2° to 2³¹.
+         * Output(s): Display the list of the number 2 raised to the powers of every number from 0 to 31.
+         */
+        function twoPowers() {
+            // i is the exponent 
+            var power = "";
+            for (let i = 0; i <= 31; i++) {
+                var base = 2;
+                var result = Math.pow(base, i);
+                power += base + " to the power of " + i + " = " + result + "<br>";
+            }
+            // Displays all the powers of 2 with exp from 1 to 31
+            document.getElementById("output").innerHTML = power.fontcolor("blue").fontsize("4");
+          }
+    </script>
+</head>
+<body>
+    <h2>2° And Everything in Between! 2³¹</h2>
+    <p>This program below computes all the powers of 2 from 2° to 2³¹:</p>
+    <button type = "button" onclick = "twoPowers()"><strong>Power Table</strong></button><br/><br/>
+    <div id = "output"></div>
+</body>
+</html>
