@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>INVESTMENT CALCULATOR</title>
+    
+    <style>
+      form  { display: table;      }
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; padding: 8px 20px; border: none; background-color: #3CBC8D; color: white; margin: 2px 0; }
+    </style>
+
+    <script>
+        /*
+         * Defining Table
+         * Input(s): Get the values of following items from the user:
+         *      1. Investment amount
+         *      2. Annual rate
+         *      3. Number of years to grow
+         *      4. Periods per year
+         * Processing: Compute the future value of an investment using the formula  f = a (1 + r)ⁿ
+         * Output(s): Displays the future value of the investment.
+         */
+        
+        function doFV() {
+            var principal = parseFloat(document.getElementById('inv_Box').value);
+            var annualRate = parseFloat(document.getElementById('rate_Box').value);
+            var years = parseFloat(document.getElementById('year_Box').value);
+            var periodsPerYear = parseFloat(document.getElementById('per_Box').value);
+
+            FutureV = computeFutureValue(principal, annualRate, years, periodsPerYear);
+
+            result_FV = "Your investment will be worth $" + FutureV.toLocaleString("en-US").fontcolor("blue") + " in " + years + " year(s).";
+            document.getElementById('output').innerHTML = result_FV;
+        }
+
+        function computeFutureValue(p, r, t, n) {
+            let result = Math.round(p * Math.pow((1 + (r/n)), (n * t))*100)/100;
+            return result;            
+        }
+
+    </script>
+</head>
+<body>
+    <h2>INVESTMENT CALCULATOR</h2>
+    <h3>Calculate your investment earnings</h3>
+    <p>This calculator can be used to calculate the future value of an investment.</p><br/>
+    <form>
+      <p>          
+          <label for = "inv_Box"><strong>Amount Invested (Principal) :</strong></label>
+          <input type = "text" id = "inv_Box" placeholder = "$" size = "5">
+      </p>
+      <p>
+          <label for = "rate_Box"><strong>Annual Rate (Ex: 0.08) :</strong></label>
+          <input type = "text" id = "rate_Box" size = "5">
+      </p>
+      <p>    
+          <label for = "year_Box"><strong>Number Of Years :</strong></label>
+          <input type = "text" id = "year_Box" size = "5">
+      </p>  
+      <p>    
+          <label for = "per_Box"><strong>Periods Per Year :</strong></label>
+          <input type = "text" id = "per_Box" size = "5">
+      </p>  
+    </form>
+    <br><button type = "button" onclick = "doFV()"><strong>Compute Future Value</strong></button><br/><br/>
+    <div id = "output"></div>    
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LOAN CALCULATOR</title>
+    
+    <style>
+      form  { display: table;      }
+      p     { display: table-row;  }
+      label { display: table-cell; }
+      input { display: table-cell; padding: 6px 20px; border: none; background-color: #89bdb2; color: white; margin: 1.5px 0; }
+    </style>
+
+    <script>
+        /*
+         * Defining Table
+         * Input(s): Get the values of following items from the user:
+         *      1. Amount borrowed
+         *      2. Annual interest rate
+         *      3. Number of years (Loan term)
+         *      4. Payment per year
+         *      5. Number of payments paid to date
+         * Processing: Compute the payment every month for a loan and the balance of a loan.
+         * Output(s): Displays the monthly payment and the payoff amount of a loan.
+         */
+        function doPayment() {
+            var principal = parseFloat(document.getElementById('inv_Box').value);
+            var annualRate = parseFloat(document.getElementById('rate_Box').value);
+            var years = parseFloat(document.getElementById('year_Box').value);
+            var periodsPerYear = parseFloat(document.getElementById('per_Box').value);
+
+            MonthlyPMT = computePayment(principal, annualRate, years, periodsPerYear);
+
+            result_PMT = "Payment Every Month is: $" + MonthlyPMT.toLocaleString("en-US").fontcolor("blue");
+            document.getElementById('output_1').innerHTML = result_PMT;
+        }
+        function doBalance() {
+            var principal = parseFloat(document.getElementById('inv_Box').value);
+            var annualRate = parseFloat(document.getElementById('rate_Box').value);
+            var years = parseFloat(document.getElementById('year_Box').value);
+            var periodsPerYear = parseFloat(document.getElementById('per_Box').value);
+            var numberOfPaymentsPaidToDate = parseFloat(document.getElementById('paid_Box').value);
+
+            PayOFF = computeBalance(principal, annualRate, years, periodsPerYear, numberOfPaymentsPaidToDate);
+
+            result_PAY = "The Remaining Balance is: $" + PayOFF.toLocaleString("en-US").fontcolor("blue");
+            document.getElementById('output_2').innerHTML = result_PAY;
+        }
+
+        function computePayment(p, r, t, n) {
+            let payment = Math.round((p * (r / n)) / (1 - (Math.pow((1 + (r/n)), (-n * t))))*100)/100;
+            return payment;            
+        }
+        function computeBalance(p, r, t, n, d) {
+            let e = (p * (r / n)) / (1 - (Math.pow((1 + (r/n)), (-n * t))));
+            let balance = Math.round((p * Math.pow((1+(r/n)), d) - (e * (Math.pow((1 + (r/n)), d) -1)/(r/n)))*100)/100;
+            return balance;   
+        }         
+    </script>
+</head>
+<body>
+    <h2>LOAN CALCULATOR</h2>
+    <p>This loan calculator will help you determine the monthly payments on a loan and the payoff amount of a loan.</p><br/>
+    <form>
+      <p>          
+          <label for = "inv_Box"><strong>Amount Borrowed (Principal) :</strong></label>
+          <input type = "text" id = "inv_Box" placeholder = "$" size = "5">
+      </p>
+      <p>
+          <label for = "rate_Box"><strong>Annual Interest Rate :</strong></label>
+          <input type = "text" id = "rate_Box" placeholder = "Ex: 0.065" size = "5">
+      </p>
+      <p>    
+          <label for = "year_Box"><strong>Number Of Years :</strong></label>
+          <input type = "text" id = "year_Box" placeholder = "Years" size = "5">
+      </p>  
+      <p>    
+          <label for = "per_Box"><strong>Payments Per Year :</strong></label>
+          <input type = "text" id = "per_Box" placeholder = "Frequency" size = "5">
+      </p>
+          <br><button type = "button" onclick = "doPayment()"><strong>Compute Payment</strong></button>
+          <div id = "output_1"></div><br/><br/>
+      <p>    
+          <label for = "paid_Box"><strong>Number of Payments Paid to Date :</strong></label>
+          <input type = "text" id = "paid_Box" size = "5">
+      </p>  
+    
+          <br><button type = "button" onclick = "doBalance()"><strong>Compute Payoff Amount</strong></button>
+          <div id = "output_2"></div>    
+    </form>
+</body>
+</html>
