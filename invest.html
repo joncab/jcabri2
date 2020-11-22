@@ -8,7 +8,7 @@
       form  { display: table;      }
       p     { display: table-row;  }
       label { display: table-cell; }
-      input { display: table-cell; padding: 8px 20px; border: none; background-color: #3CBC8D; color: white; margin: 2px 0; }
+      input { display: table-cell; padding: 8px 20px; border: none; background-color: #46d084; color: white; margin: 2px 0; }
     </style>
 
     <script>
@@ -52,16 +52,16 @@
           <input type = "text" id = "inv_Box" placeholder = "$" size = "5">
       </p>
       <p>
-          <label for = "rate_Box"><strong>Annual Rate (Ex: 0.08) :</strong></label>
-          <input type = "text" id = "rate_Box" size = "5">
+          <label for = "rate_Box"><strong>Annual Rate :</strong></label>
+          <input type = "text" id = "rate_Box" placeholder = "Ex: 0.08" size = "5">
       </p>
       <p>    
           <label for = "year_Box"><strong>Number Of Years :</strong></label>
-          <input type = "text" id = "year_Box" size = "5">
+          <input type = "text" id = "year_Box" placeholder = "Years" size = "5">
       </p>  
       <p>    
           <label for = "per_Box"><strong>Periods Per Year :</strong></label>
-          <input type = "text" id = "per_Box" size = "5">
+          <input type = "text" id = "per_Box" placeholder = "Times per yr" size = "5">
       </p>  
     </form>
     <br><button type = "button" onclick = "doFV()"><strong>Compute Future Value</strong></button><br/><br/>
