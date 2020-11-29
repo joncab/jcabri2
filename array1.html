@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two Functions that Use Arrays</title>
+    <script>
+        /* Defining Table
+        * Input: no user input
+        * Processing: Test the addEnds and getMiddle functions by calling them.
+        * Output: The values returned from the addEnds and getMiddle functions.
+        */
+function test() {
+    let list1 = [ 17, 8, 9, 5, 20 ];
+    let list2 = [ 12, 4, 8, 15, 17, 5, 20, 11 ];
+
+    sum1 = addEnds1(list1)
+    sum2 = addEnds2(list2)
+    mid1 = getMiddle1(list1)
+    mid2 = getMiddle2(list2)
+
+    document.getElementById('output_1').innerHTML = "The sum of the first and last values in list1 array is: " + Number(list1[0]) + " + " +  Number(list1[list1.length-1]) + " =  " + sum1;
+    document.getElementById('output_2').innerHTML = "The sum of the first and last values in list2 array is: " + Number(list2[0]) + " + " +  Number(list2[list2.length-1]) + " =  " + sum2;
+    document.getElementById('output_3').innerHTML = "The middle element in list1 array is: " + mid1;
+    document.getElementById('output_4').innerHTML = "The middle element in list2 array is: " + mid2;
+}
+
+function addEnds1(list1) {
+    let n1 = Number(list1[0]);
+    let n2 = Number(list1[list1.length - 1]);
+    let result_1 = n1 + n2;
+    return result_1;
+}
+
+function addEnds2(list2) {
+    let n1 = Number(list2[0]);
+    let n2 = Number(list2[list2.length - 1]);
+    let result_2 = n1 + n2;
+    return result_2;
+}
+
+function getMiddle1(list1) {
+    let midElement1 = (list1.length - 1)/2;
+    return list1[midElement1];
+}  
+    
+function getMiddle2(list2) {
+    if (list2.length %2 == 1) {
+        return list2[(list2.length-1)/2];
+    } else {
+        return (list2[(list2.length/2)]+list2[(list2.length/2 -1)])/2
+    }
+    
+}
+
+    </script>
+</head>
+<body>
+    <h2>Two Functions that Use Arrays</h2>
+
+    <br><button type = "button" onclick = "test()"><strong>Output</strong></button><br/><br/>
+    <div id = "output_1"></div> 
+    <div id = "output_2"></div><br/> 
+    <div id = "output_3"></div> 
+    <div id = "output_4"></div> 
+
+</body>
+</html>
